@@ -1,0 +1,46 @@
+@startuml
+title UML Deployment Diagram for Software Product
+
+left to right direction
+
+skinparam componentStyle uml2
+
+node "<<Client Machine>>" as client {
+    node "<<Operating System: Windows/Linux>>" {
+        node "<<Web Browser>>" {
+            component [*.html]
+            component [*.css]
+            component [*.js]
+            component [*.php]
+        }
+    }
+}
+
+interface InputDevice
+
+interface OutputDevice
+
+InputDevice -- client
+
+OutputDevice -- client
+
+node "<<Application Server>>" as appServer {
+    node "<<Operating System: Linux>>" as linux1 {
+        node "<<PHP Application Server>>" {
+            component [*.php]
+        }
+    }
+}
+
+client -- appServer
+
+node "<<Database Server>>" as dbServer {
+    node "<<Operating System: Linux>>" as linux2 {
+        node "<<MySQL Database Server>>" {
+            database MySQL
+        }
+    }
+}
+
+appServer -- dbServer
+@enduml
